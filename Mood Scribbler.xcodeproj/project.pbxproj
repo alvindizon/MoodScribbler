@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		82D1C89C2D0EE67900265643 /* Mood_ScribblerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C89B2D0EE67900265643 /* Mood_ScribblerApp.swift */; };
-		82D1C89E2D0EE67900265643 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C89D2D0EE67900265643 /* ContentView.swift */; };
+		82D1C89E2D0EE67900265643 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C89D2D0EE67900265643 /* HomeView.swift */; };
 		82D1C8A02D0EE67A00265643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D1C89F2D0EE67A00265643 /* Assets.xcassets */; };
 		82D1C8A32D0EE67A00265643 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D1C8A22D0EE67A00265643 /* Preview Assets.xcassets */; };
 		82D1C8B42D0EEB0E00265643 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C8B32D0EEB0E00265643 /* CustomFont.swift */; };
+		82ECF3762D17B6AC00C57C83 /* AppColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECF3752D17B6AC00C57C83 /* AppColorTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		82D1C8982D0EE67900265643 /* Mood Scribbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mood Scribbler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D1C89B2D0EE67900265643 /* Mood_ScribblerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood_ScribblerApp.swift; sourceTree = "<group>"; };
-		82D1C89D2D0EE67900265643 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		82D1C89D2D0EE67900265643 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		82D1C89F2D0EE67A00265643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82D1C8A22D0EE67A00265643 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82D1C8AC2D0EE89100265643 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -25,6 +26,7 @@
 		82D1C8AE2D0EE8BD00265643 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Thin.ttf"; path = "../../../../../../Downloads/Poppins/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		82D1C8AF2D0EE8E100265643 /* Mood-Scribbler-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Mood-Scribbler-Info.plist"; sourceTree = SOURCE_ROOT; };
 		82D1C8B32D0EEB0E00265643 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		82ECF3752D17B6AC00C57C83 /* AppColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +43,105 @@
 		821468232D1794B60016E1CC /* UIStyling */ = {
 			isa = PBXGroup;
 			children = (
+				82D1C8B32D0EEB0E00265643 /* CustomFont.swift */,
+				82ECF3752D17B6AC00C57C83 /* AppColorTheme.swift */,
 			);
 			path = UIStyling;
+			sourceTree = "<group>";
+		};
+		821468242D1795010016E1CC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				821468272D1797000016E1CC /* BaseShared */,
+				821468262D1796F70016E1CC /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		821468252D1795100016E1CC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821468262D1796F70016E1CC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8214682E2D1797420016E1CC /* Views */,
+				8214682D2D1797370016E1CC /* ViewModels */,
+				8214682C2D17972C0016E1CC /* Services */,
+				8214682B2D1797200016E1CC /* Models */,
+				8214682A2D1797190016E1CC /* Constants */,
+				821468292D1797130016E1CC /* Components */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		821468272D1797000016E1CC /* BaseShared */ = {
+			isa = PBXGroup;
+			children = (
+				821468302D17975F0016E1CC /* Repositories */,
+				8214682F2D17975A0016E1CC /* Constants */,
+			);
+			path = BaseShared;
+			sourceTree = "<group>";
+		};
+		821468292D1797130016E1CC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8214682A2D1797190016E1CC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		8214682B2D1797200016E1CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8214682C2D17972C0016E1CC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8214682D2D1797370016E1CC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8214682E2D1797420016E1CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82D1C89D2D0EE67900265643 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8214682F2D17975A0016E1CC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		821468302D17975F0016E1CC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		82D1C88F2D0EE67900265643 = {
@@ -68,7 +167,6 @@
 				82D1C8AA2D0EE70800265643 /* Resources */,
 				82D1C8A92D0EE6F500265643 /* Core */,
 				82D1C89B2D0EE67900265643 /* Mood_ScribblerApp.swift */,
-				82D1C89D2D0EE67900265643 /* ContentView.swift */,
 				82D1C89F2D0EE67A00265643 /* Assets.xcassets */,
 				82D1C8A12D0EE67A00265643 /* Preview Content */,
 			);
@@ -86,6 +184,8 @@
 		82D1C8A92D0EE6F500265643 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				821468252D1795100016E1CC /* Extensions */,
+				821468242D1795010016E1CC /* Features */,
 				82D1C8B02D0EE90A00265643 /* Utilities */,
 			);
 			path = Core;
@@ -113,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				821468232D1794B60016E1CC /* UIStyling */,
-				82D1C8B32D0EEB0E00265643 /* CustomFont.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -188,7 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82D1C89E2D0EE67900265643 /* ContentView.swift in Sources */,
+				82D1C89E2D0EE67900265643 /* HomeView.swift in Sources */,
+				82ECF3762D17B6AC00C57C83 /* AppColorTheme.swift in Sources */,
 				82D1C8B42D0EEB0E00265643 /* CustomFont.swift in Sources */,
 				82D1C89C2D0EE67900265643 /* Mood_ScribblerApp.swift in Sources */,
 			);
@@ -333,6 +433,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +464,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
