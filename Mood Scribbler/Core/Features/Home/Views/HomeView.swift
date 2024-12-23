@@ -9,15 +9,34 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, scribblers!")
-                .bold()
-                .foregroundStyle(AppColorTheme.secondaryTextColor)
+        NavigationStack {
+            ZStack {
+                AppColorTheme.backgroundColor.ignoresSafeArea()
+                mainContent
+                    .navigationTitle("Mood scribbler")
+                    .toolbarBackground(AppColorTheme.secondaryBackgroundColor, for: .navigationBar)
+                    .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+                    .toolbar{
+                        addButton
+                    }
+            }
+
         }
-        .padding()
+
+    }
+}
+
+extension HomeView {
+    private var mainContent: some View {
+        Text("Hello scribblers!")
+    }
+    private var addButton: some View {
+        Button {
+
+        } label: {
+            Image(systemName: "plus.app")
+                .font(.system(size: 18, weight: .semibold))
+        }
     }
 }
 
