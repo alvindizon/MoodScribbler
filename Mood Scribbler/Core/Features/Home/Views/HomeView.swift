@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showSheet: Bool = false
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -18,6 +20,11 @@ struct HomeView: View {
                     .toolbarBackgroundVisibility(.visible, for: .navigationBar)
                     .toolbar{
                         addButton
+                    }
+                    .sheet(isPresented: $showSheet) {
+
+                    } content: {
+                        sheetContentView
                     }
             }
 
@@ -45,11 +52,22 @@ extension HomeView {
     }
     private var addButton: some View {
         Button {
-
+            showSheet.toggle()
         } label: {
             Image(systemName: "plus.app")
                 .font(.system(size: 18, weight: .semibold))
         }
+    }
+    private var sheetContentView: some View {
+        ZStack {
+            AppColorTheme.secondaryBackgroundColor.opacity(0.6).ignoresSafeArea()
+            Text("Here we are in the bottom sheet")
+        }
+        .presentationDetents([.fraction(0.8)])
+        .presentationDragIndicator(.visible)
+        .presentationBackground(.ultraThinMaterial)
+        .preferredColorScheme(.dark)
+
     }
 }
 
