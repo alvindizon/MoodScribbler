@@ -37,7 +37,7 @@ extension HomeView {
         // LazyVStack only loads items as they become visible, making it ideal for displaying large lists
         LazyVStack(alignment: .leading, spacing: 16) {
             ForEach(PreviewMockDataHelper.journalEntries) { entry in
-                Text(entry.postDate.description)
+                JournalCell(journalEntry: entry)
             }
         }
         .padding(.horizontal, 32)
