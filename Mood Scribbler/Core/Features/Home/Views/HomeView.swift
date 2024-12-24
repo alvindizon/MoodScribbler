@@ -28,7 +28,20 @@ struct HomeView: View {
 
 extension HomeView {
     private var mainContent: some View {
-        Text("Hello scribblers!")
+        ScrollView {
+            cells
+        }
+    }
+
+    private var cells: some View {
+        // LazyVStack only loads items as they become visible, making it ideal for displaying large lists
+        LazyVStack(alignment: .leading, spacing: 16) {
+            ForEach(PreviewMockDataHelper.journalEntries) { entry in
+                Text(entry.postDate.description)
+            }
+        }
+        .padding(.horizontal, 32)
+        .padding(.vertical, 38)
     }
     private var addButton: some View {
         Button {
