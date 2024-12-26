@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    // StateObject is used to manage the VM's lifecycle inside the Swift UI
+    // ensures that the VM is only created once and retains its state, even if UI is re-rendered
+    @StateObject private var viewModel = HomeViewModel()
     @State private var showSheet: Bool = false
     @State private var detentHeight: CGFloat = 0
 
@@ -20,6 +23,9 @@ struct HomeView: View {
                     .toolbarBackground(AppColorTheme.secondaryBackgroundColor, for: .navigationBar)
                     .toolbarBackgroundVisibility(.visible, for: .navigationBar)
                     .toolbar{
+                        if (viewModel.showToolbarLoadingSpinner) {
+                            toolBarProgressView
+                        }
                         addButton
                     }
                     .sheet(isPresented: $showSheet) {
@@ -28,9 +34,7 @@ struct HomeView: View {
                         sheetContentView
                     }
             }
-
         }
-
     }
 }
 
@@ -44,7 +48,7 @@ extension HomeView {
     private var cells: some View {
         // LazyVStack only loads items as they become visible, making it ideal for displaying large lists
         LazyVStack(alignment: .leading, spacing: 16) {
-            ForEach(PreviewMockDataHelper.journalEntries) { entry in
+            ForEach(viewModel.journalEntries) { entry in
                 JournalCell(journalEntry: entry)
             }
         }
@@ -74,6 +78,11 @@ extension HomeView {
         .presentationBackground(.ultraThinMaterial)
         .preferredColorScheme(.dark)
 
+    }
+    private var toolBarProgressView: some View {
+        ProgressView()
+            .progressViewStyle(.circular)
+            .tint(AppColorTheme.accentColor)
     }
 }
 
