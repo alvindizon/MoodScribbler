@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showSheet: Bool = false
+    @State private var detentHeight: CGFloat = 0
 
     var body: some View {
         NavigationStack {
@@ -62,8 +63,13 @@ extension HomeView {
         ZStack {
             AppColorTheme.secondaryBackgroundColor.opacity(0.6).ignoresSafeArea()
             AddJournalEntryView()
+            // grow alongside content's width, but height should stay fixed
+                .fixedSize(horizontal: false, vertical: true)
+                .readAndBindHeight(to: $detentHeight)
         }
-        .presentationDetents([.fraction(0.8)])
+        .presentationDetents([.height(detentHeight)])
+//        .presentationDetents([.fraction(0.8)])
+        // Using [.medium] would cause bottom sheet content to be clipped
         .presentationDragIndicator(.visible)
         .presentationBackground(.ultraThinMaterial)
         .preferredColorScheme(.dark)

@@ -111,13 +111,16 @@ extension AddJournalEntryView {
 }
 
 #Preview {
+    @Previewable @State var detentHeight: CGFloat = 0
     ZStack {
         AppColorTheme.backgroundColor.ignoresSafeArea()
             .sheet(isPresented: .constant(true)) {
                 AddJournalEntryView()
-                    .presentationDetents([.height(600)])
+                    .presentationDetents([.height(detentHeight)])
                     .presentationDragIndicator(.visible)
                     .presentationBackground(.thinMaterial)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .readAndBindHeight(to: $detentHeight)
             }
     }
 }
