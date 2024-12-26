@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8203EDF92D1BFD71007F38EB /* AddJournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203EDF82D1BFD71007F38EB /* AddJournalEntryView.swift */; };
 		820A71832D1A4BA3003090BB /* PreviewMockDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71822D1A4BA3003090BB /* PreviewMockDataHelper.swift */; };
 		820A71852D1A4BF0003090BB /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71842D1A4BF0003090BB /* JournalEntry.swift */; };
 		820A71892D1A50FC003090BB /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71882D1A50FC003090BB /* JournalCell.swift */; };
@@ -14,6 +15,7 @@
 		820A718F2D1A7F22003090BB /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718D2D1A7F22003090BB /* Poppins-Regular.ttf */; };
 		820A71902D1A7F22003090BB /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718E2D1A7F22003090BB /* Poppins-Thin.ttf */; };
 		820A71912D1A7F22003090BB /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718C2D1A7F22003090BB /* Poppins-Bold.ttf */; };
+		82946F8B2D1D14EE006E8B12 /* HomeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946F8A2D1D14EE006E8B12 /* HomeConstants.swift */; };
 		82D1C89C2D0EE67900265643 /* Mood_ScribblerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C89B2D0EE67900265643 /* Mood_ScribblerApp.swift */; };
 		82D1C89E2D0EE67900265643 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1C89D2D0EE67900265643 /* HomeView.swift */; };
 		82D1C8A02D0EE67A00265643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D1C89F2D0EE67A00265643 /* Assets.xcassets */; };
@@ -23,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8203EDF82D1BFD71007F38EB /* AddJournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJournalEntryView.swift; sourceTree = "<group>"; };
 		820A71822D1A4BA3003090BB /* PreviewMockDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockDataHelper.swift; sourceTree = "<group>"; };
 		820A71842D1A4BF0003090BB /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		820A71882D1A50FC003090BB /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		820A718C2D1A7F22003090BB /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		820A718D2D1A7F22003090BB /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		820A718E2D1A7F22003090BB /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		82946F8A2D1D14EE006E8B12 /* HomeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConstants.swift; sourceTree = "<group>"; };
 		82D1C8982D0EE67900265643 /* Mood Scribbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mood Scribbler.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D1C89B2D0EE67900265643 /* Mood_ScribblerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood_ScribblerApp.swift; sourceTree = "<group>"; };
 		82D1C89D2D0EE67900265643 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				820A71882D1A50FC003090BB /* JournalCell.swift */,
+				8203EDF82D1BFD71007F38EB /* AddJournalEntryView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 		8214682A2D1797190016E1CC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				82946F8A2D1D14EE006E8B12 /* HomeConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -311,7 +317,9 @@
 				820A718B2D1A726A003090BB /* Date.swift in Sources */,
 				82D1C8B42D0EEB0E00265643 /* CustomFont.swift in Sources */,
 				82D1C89C2D0EE67900265643 /* Mood_ScribblerApp.swift in Sources */,
+				8203EDF92D1BFD71007F38EB /* AddJournalEntryView.swift in Sources */,
 				820A71892D1A50FC003090BB /* JournalCell.swift in Sources */,
+				82946F8B2D1D14EE006E8B12 /* HomeConstants.swift in Sources */,
 				820A71832D1A4BA3003090BB /* PreviewMockDataHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

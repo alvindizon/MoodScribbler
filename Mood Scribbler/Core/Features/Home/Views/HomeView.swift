@@ -61,7 +61,7 @@ extension HomeView {
     private var sheetContentView: some View {
         ZStack {
             AppColorTheme.secondaryBackgroundColor.opacity(0.6).ignoresSafeArea()
-            Text("Here we are in the bottom sheet")
+            AddJournalEntryView()
         }
         .presentationDetents([.fraction(0.8)])
         .presentationDragIndicator(.visible)
