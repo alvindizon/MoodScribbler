@@ -10,8 +10,11 @@ import SwiftUI
 struct AddJournalEntryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var animationsRunning: Bool = false
-    @State private var dayDetails: String = ""
-    @State private var ratingSelection: Int = 3
+    // Binding is a way to create a two-way connection between the property and the view
+    // It lets the view update the property, and reacts to changes in the property automatically
+    @Binding var dayDetails: String
+    @Binding var ratingSelection: Int
+
     var body: some View {
         VStack {
             closeButton
@@ -104,6 +107,8 @@ extension AddJournalEntryView {
                     .background {
                         RoundedRectangle(cornerRadius: 10).fill(AppColorTheme.backgroundColor)
                     }
+                // this modifier prevents the momentary clipping that happens to the RoundedRectangle when changing ratings
+                    .fixedSize()
             }
         }
         .padding(.top)
@@ -112,10 +117,14 @@ extension AddJournalEntryView {
 
 #Preview {
     @Previewable @State var detentHeight: CGFloat = 0
+    @Previewable @State var selection = 1
     ZStack {
         AppColorTheme.backgroundColor.ignoresSafeArea()
             .sheet(isPresented: .constant(true)) {
-                AddJournalEntryView()
+                AddJournalEntryView(
+                    dayDetails: .constant(""),
+                    ratingSelection: $selection
+                )
                     .presentationDetents([.height(detentHeight)])
                     .presentationDragIndicator(.visible)
                     .presentationBackground(.thinMaterial)

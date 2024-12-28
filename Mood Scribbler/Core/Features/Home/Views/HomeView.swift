@@ -13,6 +13,9 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var showSheet: Bool = false
     @State private var detentHeight: CGFloat = 0
+    @State private var shouldCreateNewJournalEntry: Bool = false
+    @State private var showToolbarLoadingSpinner: Bool = false
+
 
     var body: some View {
         NavigationStack {
@@ -23,15 +26,29 @@ struct HomeView: View {
                     .toolbarBackground(AppColorTheme.secondaryBackgroundColor, for: .navigationBar)
                     .toolbarBackgroundVisibility(.visible, for: .navigationBar)
                     .toolbar{
-                        if (viewModel.showToolbarLoadingSpinner) {
+                        if showToolbarLoadingSpinner {
                             toolBarProgressView
                         }
                         addButton
                     }
                     .sheet(isPresented: $showSheet) {
-
+                        // trigger save method from the viewmodel
+                        shouldCreateNewJournalEntry = true
                     } content: {
                         sheetContentView
+                    }
+                // runs async code when a view appears or when something triggers it
+                // manages lifecycle-aware tasks, such as triggering something when something is first shown
+                    .task(id: shouldCreateNewJournalEntry) {
+                        // only execute if shouldCreateNewJournalEntry is true
+                        guard shouldCreateNewJournalEntry else { return }
+                        showToolbarLoadingSpinner = true
+                        await viewModel.saveJournalEntry()
+                        showToolbarLoadingSpinner = false
+                        shouldCreateNewJournalEntry = false
+                    }
+                    .task {
+                        await viewModel.retrieveAllJournalEntries()
                     }
             }
         }
@@ -66,10 +83,13 @@ extension HomeView {
     private var sheetContentView: some View {
         ZStack {
             AppColorTheme.secondaryBackgroundColor.opacity(0.6).ignoresSafeArea()
-            AddJournalEntryView()
+            AddJournalEntryView(
+                dayDetails: $viewModel.journalContent,
+                ratingSelection: $viewModel.rating
+            )
             // grow alongside content's width, but height should stay fixed
-                .fixedSize(horizontal: false, vertical: true)
-                .readAndBindHeight(to: $detentHeight)
+            .fixedSize(horizontal: false, vertical: true)
+            .readAndBindHeight(to: $detentHeight)
         }
         .presentationDetents([.height(detentHeight)])
 //        .presentationDetents([.fraction(0.8)])
