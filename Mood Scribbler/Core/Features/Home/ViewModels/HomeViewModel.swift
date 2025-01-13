@@ -17,6 +17,10 @@ final class HomeViewModel: ObservableObject {
         self.journalEntriesRepository = journalEntriesRepository
     }
 
+    func checkIfDataIsPresent() -> Bool {
+        return !journalEntries.isEmpty
+    }
+
     func saveJournalEntry() async {
         guard !journalContent.isEmpty else { return }
         let journalEntry = JournalEntry(postDate: Date(), content: journalContent, wellBeingRating: rating)

@@ -11,10 +11,12 @@ struct HomeView: View {
     // StateObject is used to manage the VM's lifecycle inside the Swift UI
     // ensures that the VM is only created once and retains its state, even if UI is re-rendered
     @StateObject private var viewModel = HomeViewModel()
+    // @State is a property wrapper--SwiftUI will trigger a rebuild if value changes
     @State private var showSheet: Bool = false
     @State private var detentHeight: CGFloat = 0
     @State private var shouldCreateNewJournalEntry: Bool = false
     @State private var showToolbarLoadingSpinner: Bool = false
+    @State private var showLoadingSpinner: Bool = false
 
 
     var body: some View {
@@ -48,7 +50,9 @@ struct HomeView: View {
                         shouldCreateNewJournalEntry = false
                     }
                     .task {
+                        showLoadingSpinner = true
                         await viewModel.retrieveAllJournalEntries()
+                        showLoadingSpinner = false
                     }
             }
         }
@@ -59,6 +63,41 @@ extension HomeView {
     private var mainContent: some View {
         ScrollView {
             cells
+        }
+        // lets you place a view on top of another
+        .overlay {
+            if showLoadingSpinner {
+                loadingSpinnerView
+            } else {
+                if !viewModel.checkIfDataIsPresent() {
+                    emptyStateView
+                }
+            }
+        }
+    }
+
+    private var loadingSpinnerView: some View {
+        ProgressView("Loading...")
+            .progressViewStyle(.circular)
+            .padding()
+            .controlSize(.large)
+            .tint(AppColorTheme.accentColor)
+            .foregroundStyle(AppColorTheme.whiteColor)
+            .bold()
+    }
+
+    private var emptyStateView: some View {
+        ContentUnavailableView {
+            Label("No journal entries yet", systemImage: "document")
+                .foregroundStyle(AppColorTheme.secondaryTextColor)
+        } description: {
+            Text("You don't have any saved entries yet.")
+                .foregroundStyle(AppColorTheme.secondaryTextColor)
+        } actions: {
+            Button("Create a new entry here") {
+                showSheet.toggle()
+            }
+            .buttonStyle(.bordered)
         }
     }
 
