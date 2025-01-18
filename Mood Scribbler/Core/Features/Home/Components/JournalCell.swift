@@ -9,6 +9,7 @@ import SwiftUI
 
 struct JournalCell: View {
     let journalEntry: JournalEntry
+    var onButtonPressed: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -46,7 +47,7 @@ extension JournalCell {
     }
     private var showMoreView: some View {
         Button {
-            // action
+            onButtonPressed()
         } label: {
             Image(systemName: "ellipsis")
                 .foregroundStyle(AppColorTheme.accentColor)
@@ -68,6 +69,6 @@ extension JournalCell {
 }
 
 #Preview(traits: .sizeThatFitsLayout){
-    JournalCell(journalEntry: PreviewMockDataHelper.journalEntry)
+    JournalCell(journalEntry: PreviewMockDataHelper.journalEntry){}
         .padding()
 }

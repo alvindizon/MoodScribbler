@@ -45,7 +45,7 @@ struct HomeView: View {
                         // only execute if shouldCreateNewJournalEntry is true
                         guard shouldCreateNewJournalEntry else { return }
                         showToolbarLoadingSpinner = true
-                        await viewModel.saveJournalEntry()
+                        await viewModel.saveOrUpdateJournalEntry()
                         showToolbarLoadingSpinner = false
                         shouldCreateNewJournalEntry = false
                     }
@@ -105,11 +105,31 @@ extension HomeView {
         // LazyVStack only loads items as they become visible, making it ideal for displaying large lists
         LazyVStack(alignment: .leading, spacing: 16) {
             ForEach(viewModel.journalEntries) { entry in
-                JournalCell(journalEntry: entry)
+                JournalCell(journalEntry: entry) {
+                    showBottomSheetWithData(for: entry)
+                }
+                .contextMenu {
+                    Button {
+                        Task {
+                            self.showToolbarLoadingSpinner = true
+                            await viewModel.deleteJournalEntry(journalEntry: entry)
+                            self.showToolbarLoadingSpinner = false
+                        }
+
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
         }
         .padding(.horizontal, 32)
         .padding(.vertical, 38)
+    }
+
+    private func showBottomSheetWithData(for entry: JournalEntry) {
+        // populate
+        viewModel.fillJournalData(for: entry)
+        showSheet.toggle()
     }
     private var addButton: some View {
         Button {
