@@ -14,4 +14,5 @@ enum AppColorTheme {
     static let secondaryBackgroundColor: Color = Color("SecondaryBackgroundColor")
     static let whiteColor: Color = Color("WhiteColor")
     static let accentColor: Color = Color("AccentColor")
+    static let errorColor: Color = .red
 }

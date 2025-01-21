@@ -11,6 +11,7 @@ final class HomeViewModel: ObservableObject {
     @Published private(set) var journalEntries: [JournalEntry] = []
     @Published var journalContent = ""
     @Published var rating: Int = 3
+    @Published var errorMessage: String? = nil
     private let journalEntriesRepository: JournalEntriesRepository
     private var currentSelectedJournalEntry: JournalEntry?
 
@@ -56,7 +57,7 @@ final class HomeViewModel: ObservableObject {
 
         do {
             try await journalEntriesRepository.update(for: entry.id, with: toBeUpdatedEntry)
-            await retrieveAllJournalEntries()
+            await retrieveAllJournalEntriesError()
         } catch {
             debugPrint("Error updating journal entry: \(error)")
         }
@@ -70,7 +71,7 @@ final class HomeViewModel: ObservableObject {
 
         do {
             try await journalEntriesRepository.create(journalEntry)
-            await retrieveAllJournalEntries()
+            await retrieveAllJournalEntriesError()
         } catch  {
             debugPrint("Error creating a journal entry! \(error)")
         }
@@ -79,12 +80,31 @@ final class HomeViewModel: ObservableObject {
     }
 
     func retrieveAllJournalEntries() async {
+        // try? await swallows error and returns nil instead
         let entries = try? await journalEntriesRepository.retrieveAll()
         // sort most recent to be first on list
         let sortedEntries = entries?.sorted { $0.postDate > $1.postDate }
         // if an error occurs, pass an empty array
         await MainActor.run {
             journalEntries = sortedEntries ?? []
+        }
+    }
+
+    func retrieveAllJournalEntriesError() async {
+        do {
+            // try? await swallows error and returns nil instead
+            let entries = try await journalEntriesRepository.retrieveAllError()
+            // sort most recent to be first on list
+            let sortedEntries = entries.sorted { $0.postDate > $1.postDate }
+            // if an error occurs, pass an empty array
+            await MainActor.run {
+                journalEntries = sortedEntries
+                errorMessage = nil
+            }
+        } catch {
+            await MainActor.run {
+                errorMessage = error.errorMessage
+            }
         }
     }
 
@@ -102,7 +122,7 @@ final class HomeViewModel: ObservableObject {
     func deleteJournalEntry(journalEntry: JournalEntry) async {
         do {
             try await journalEntriesRepository.delete(for: journalEntry.id)
-            await retrieveAllJournalEntries()
+            await retrieveAllJournalEntriesError()
         } catch {
             debugPrint("Error deleting a journal Entry \(error)")
         }

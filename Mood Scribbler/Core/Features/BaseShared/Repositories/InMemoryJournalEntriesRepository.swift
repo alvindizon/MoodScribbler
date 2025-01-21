@@ -14,6 +14,26 @@ enum RepositoryError: Error {
     case deleteFailed
     case updateFailed
     case saveFailed
+    case fetchFailed
+
+    var errorMessage: String {
+        switch self {
+        case .notFound:
+            return "Failed to fetch the journal Entry"
+        case .unknown:
+            return "Something went wrong. Try again later!"
+        case .emptyData:
+            return "Empty data"
+        case .deleteFailed:
+            return "Failed to delete the journal Entry"
+        case .updateFailed:
+            return "Failed to update the journal Entry"
+        case .saveFailed:
+            return "Failed to save the journal Entry"
+        case .fetchFailed:
+            return "Failed to fetch the journal Entries!"
+        }
+    }
 }
 
 // actors to designed to handle data safely, since actors can only execute one method at a time
@@ -58,6 +78,16 @@ actor InMemoryJournalEntriesRepository: JournalEntriesRepository {
         } catch {
             throw .unknown
         }
+    }
+
+    func retrieveAllError() async throws(RepositoryError) -> [JournalEntry] {
+        do {
+            try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+        } catch {
+            throw .unknown
+        }
+        throw .fetchFailed
+        return entries
     }
 
     func update(for id: String, with toBeUpdatedJournalEntry: JournalEntry) async throws(RepositoryError) {

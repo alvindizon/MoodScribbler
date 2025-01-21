@@ -51,7 +51,7 @@ struct HomeView: View {
                     }
                     .task {
                         showLoadingSpinner = true
-                        await viewModel.retrieveAllJournalEntries()
+                        await viewModel.retrieveAllJournalEntriesError()
                         showLoadingSpinner = false
                     }
             }
@@ -68,10 +68,10 @@ extension HomeView {
         .overlay {
             if showLoadingSpinner {
                 loadingSpinnerView
-            } else {
-                if !viewModel.checkIfDataIsPresent() {
-                    emptyStateView
-                }
+            } else if let _ = viewModel.errorMessage {
+                errorStateView
+            } else if !viewModel.checkIfDataIsPresent() {
+                emptyStateView
             }
         }
     }
@@ -96,6 +96,25 @@ extension HomeView {
         } actions: {
             Button("Create a new entry here") {
                 showSheet.toggle()
+            }
+            .buttonStyle(.bordered)
+        }
+    }
+
+    private var errorStateView: some View {
+        ContentUnavailableView {
+            Label("There was an error.", systemImage: "x.circle")
+                .foregroundStyle(AppColorTheme.errorColor)
+        } description: {
+            Text(viewModel.errorMessage ?? "")
+                .foregroundStyle(AppColorTheme.secondaryTextColor)
+        } actions: {
+            Button("Retry") {
+               Task {
+                    showLoadingSpinner = true
+                    await viewModel.retrieveAllJournalEntriesError()
+                    showLoadingSpinner = false
+                }
             }
             .buttonStyle(.bordered)
         }

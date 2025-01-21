@@ -19,4 +19,5 @@ protocol JournalEntriesRepository {
     func retrieveAll() async throws(RepositoryError) -> [JournalEntry]
     func update(for id: String, with toBeUpdatedJournalEntry: JournalEntry) async throws(RepositoryError)
     func delete(for id: String) async throws(RepositoryError)
+    func retrieveAllError() async throws(RepositoryError) -> [JournalEntry]
 }
