@@ -51,7 +51,7 @@ struct HomeView: View {
                     }
                     .task {
                         showLoadingSpinner = true
-                        await viewModel.retrieveAllJournalEntriesError()
+                        await viewModel.retrieveAllJournalEntries()
                         showLoadingSpinner = false
                     }
             }
@@ -112,7 +112,7 @@ extension HomeView {
             Button("Retry") {
                Task {
                     showLoadingSpinner = true
-                    await viewModel.retrieveAllJournalEntriesError()
+                    await viewModel.retrieveAllJournalEntries()
                     showLoadingSpinner = false
                 }
             }

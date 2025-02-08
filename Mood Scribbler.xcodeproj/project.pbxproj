@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		8203EDF92D1BFD71007F38EB /* AddJournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203EDF82D1BFD71007F38EB /* AddJournalEntryView.swift */; };
 		820A71832D1A4BA3003090BB /* PreviewMockDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71822D1A4BA3003090BB /* PreviewMockDataHelper.swift */; };
-		820A71852D1A4BF0003090BB /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71842D1A4BF0003090BB /* JournalEntry.swift */; };
 		820A71892D1A50FC003090BB /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A71882D1A50FC003090BB /* JournalCell.swift */; };
 		820A718B2D1A726A003090BB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A718A2D1A726A003090BB /* Date.swift */; };
 		820A718F2D1A7F22003090BB /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718D2D1A7F22003090BB /* Poppins-Regular.ttf */; };
 		820A71902D1A7F22003090BB /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718E2D1A7F22003090BB /* Poppins-Thin.ttf */; };
 		820A71912D1A7F22003090BB /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 820A718C2D1A7F22003090BB /* Poppins-Bold.ttf */; };
+		8234A4D82D570C4F004D49DC /* LocalJournalEntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234A4D72D570C47004D49DC /* LocalJournalEntryRepository.swift */; };
 		82946F8B2D1D14EE006E8B12 /* HomeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946F8A2D1D14EE006E8B12 /* HomeConstants.swift */; };
 		82946F942D1D6741006E8B12 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946F932D1D6741006E8B12 /* View.swift */; };
 		82946F962D1D6C27006E8B12 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946F952D1D6C27006E8B12 /* HomeViewModel.swift */; };
@@ -31,12 +31,12 @@
 /* Begin PBXFileReference section */
 		8203EDF82D1BFD71007F38EB /* AddJournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJournalEntryView.swift; sourceTree = "<group>"; };
 		820A71822D1A4BA3003090BB /* PreviewMockDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMockDataHelper.swift; sourceTree = "<group>"; };
-		820A71842D1A4BF0003090BB /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		820A71882D1A50FC003090BB /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
 		820A718A2D1A726A003090BB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		820A718C2D1A7F22003090BB /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		820A718D2D1A7F22003090BB /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		820A718E2D1A7F22003090BB /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		8234A4D72D570C47004D49DC /* LocalJournalEntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJournalEntryRepository.swift; sourceTree = "<group>"; };
 		82946F8A2D1D14EE006E8B12 /* HomeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConstants.swift; sourceTree = "<group>"; };
 		82946F932D1D6741006E8B12 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		82946F952D1D6C27006E8B12 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -53,6 +53,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8234A4D62D56FEB9004D49DC /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		8234A4D92D570EA6004D49DC /* Database */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Database; sourceTree = "<group>"; };
 		82946F8C2D1D3D38006E8B12 /* UIHelpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UIHelpers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -110,6 +112,7 @@
 		821468272D1797000016E1CC /* BaseShared */ = {
 			isa = PBXGroup;
 			children = (
+				8234A4D62D56FEB9004D49DC /* Models */,
 				821468302D17975F0016E1CC /* Repositories */,
 				8214682F2D17975A0016E1CC /* Constants */,
 			);
@@ -136,7 +139,6 @@
 		8214682B2D1797200016E1CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				820A71842D1A4BF0003090BB /* JournalEntry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +177,8 @@
 		821468302D17975F0016E1CC /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				8234A4D92D570EA6004D49DC /* Database */,
+				8234A4D72D570C47004D49DC /* LocalJournalEntryRepository.swift */,
 				82A1D3122D1FFDA200D49144 /* JournalEntriesRepository.swift */,
 				82A1D3142D1FFE6900D49144 /* InMemoryJournalEntriesRepository.swift */,
 			);
@@ -271,6 +275,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				8234A4D62D56FEB9004D49DC /* Models */,
+				8234A4D92D570EA6004D49DC /* Database */,
 				82946F8C2D1D3D38006E8B12 /* UIHelpers */,
 			);
 			name = "Mood Scribbler";
@@ -332,8 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82946F942D1D6741006E8B12 /* View.swift in Sources */,
-				820A71852D1A4BF0003090BB /* JournalEntry.swift in Sources */,
 				82D1C89E2D0EE67900265643 /* HomeView.swift in Sources */,
+				8234A4D82D570C4F004D49DC /* LocalJournalEntryRepository.swift in Sources */,
 				82ECF3762D17B6AC00C57C83 /* AppColorTheme.swift in Sources */,
 				820A718B2D1A726A003090BB /* Date.swift in Sources */,
 				82D1C8B42D0EEB0E00265643 /* CustomFont.swift in Sources */,

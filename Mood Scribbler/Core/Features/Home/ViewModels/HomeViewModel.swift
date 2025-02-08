@@ -15,7 +15,12 @@ final class HomeViewModel: ObservableObject {
     private let journalEntriesRepository: JournalEntriesRepository
     private var currentSelectedJournalEntry: JournalEntry?
 
-    init(journalEntriesRepository: JournalEntriesRepository = InMemoryJournalEntriesRepository()) {
+    init(
+        journalEntriesRepository: JournalEntriesRepository = LocalJournalEntryRepository(
+            modelContainer:
+                CustomModelContainer.container
+        )
+    ) {
         self.journalEntriesRepository = journalEntriesRepository
     }
 
@@ -57,7 +62,7 @@ final class HomeViewModel: ObservableObject {
 
         do {
             try await journalEntriesRepository.update(for: entry.id, with: toBeUpdatedEntry)
-            await retrieveAllJournalEntriesError()
+            await retrieveAllJournalEntries()
         } catch {
             debugPrint("Error updating journal entry: \(error)")
         }
@@ -71,7 +76,7 @@ final class HomeViewModel: ObservableObject {
 
         do {
             try await journalEntriesRepository.create(journalEntry)
-            await retrieveAllJournalEntriesError()
+            await retrieveAllJournalEntries()
         } catch  {
             debugPrint("Error creating a journal entry! \(error)")
         }
@@ -122,7 +127,7 @@ final class HomeViewModel: ObservableObject {
     func deleteJournalEntry(journalEntry: JournalEntry) async {
         do {
             try await journalEntriesRepository.delete(for: journalEntry.id)
-            await retrieveAllJournalEntriesError()
+            await retrieveAllJournalEntries()
         } catch {
             debugPrint("Error deleting a journal Entry \(error)")
         }
